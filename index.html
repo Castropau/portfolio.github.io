@@ -127,8 +127,8 @@
       <p class="text-white">I'm <span class="text-white typed" data-typed-items="Web Developer, Software Engineer, Programmer, IT Student"></span></p>
     </div>
   </section>
-  <!-- <script>
-    // List of background images
+  <script>
+    
     const images = [
   'assets/img/ZOFGK.jpg',
   'assets/img/1st.jpg',
@@ -136,28 +136,26 @@
   'assets/img/3rd.jpg',
   'assets/img/4th.jpg',
   'assets/img/5th.jpg',
-  'assets/img/withj.jpg'
+  // 'assets/img/withj.jpg'
 ];
 
 let index = 0;
 const slider = document.querySelector('.hero-slider');
 
 function changeBackground() {
-  slider.style.opacity = 0; // Fade out
+  slider.style.opacity = 0;
   setTimeout(() => {
     slider.style.backgroundImage = `url(${images[index]})`;
     index = (index + 1) % images.length;
-    slider.style.opacity = 1; // Fade in
-  }, 1000); // Wait for 1 second before fading in
+    slider.style.opacity = 1; 
+  }, 1000); 
 }
-
-// Initial call to change background and set interval for automatic change
 changeBackground();
-setInterval(changeBackground, 5000); // Change image every 5 seconds
+setInterval(changeBackground, 5000);
 
 
-  </script> -->
-  <script>
+  </script>
+  <!-- <script>
     const images = [
   'assets/img/ZOFGK.jpg',
   'assets/img/1st.jpg',
@@ -173,30 +171,28 @@ const slider = document.querySelector('.hero-slider');
 
 function changeBackground() {
   if (index < images.length - 1) {
-    // Regular fade effect for all images except the last one
-    slider.style.opacity = 0; // Fade out
+    slider.style.opacity = 0;
     setTimeout(() => {
       slider.style.backgroundImage = `url(${images[index]})`;
-      slider.style.opacity = 1; // Fade in
+      slider.style.opacity = 1;
       index = (index + 1) % images.length;
-    }, 1000); // Wait for 1 second before fading in
+    }, 1000);
   } else {
-    // Special "pasabog" effect for the last image
-    slider.style.animation = 'pasabog 2s ease'; // Apply the pasabog animation
+    slider.style.animation = 'pasabog 2s ease';
     setTimeout(() => {
       slider.style.backgroundImage = `url(${images[index]})`;
-      slider.style.opacity = 1; // Reset opacity after animation
+      slider.style.opacity = 1; 
       index = (index + 1) % images.length;
-      slider.style.animation = ''; // Clear animation to reset for next image change
-    }, 2000); // Wait for 2 seconds (same as animation duration) before changing image
+      slider.style.animation = ''; 
+    }, 2000);
   }
 }
 
-// Initial call to change background and set interval for automatic change
-changeBackground();
-setInterval(changeBackground, 5000); // Change image every 5 seconds
 
-  </script>
+changeBackground();
+setInterval(changeBackground, 5000); 
+
+  </script> -->
   <!-- End Hero -->
 
   <main id="main">
@@ -425,16 +421,6 @@ setInterval(changeBackground, 5000); // Change image every 5 seconds
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
 
-          <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/46.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/46.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div> -->
-
           <div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-wrap">
               <img src="assets/img/portfolio/project.png" class="img-fluid" alt="">
@@ -445,26 +431,6 @@ setInterval(changeBackground, 5000); // Change image every 5 seconds
               </div>
             </div>
           </div>
-
-          <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/paulo.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/paulo.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div> -->
-
-          <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/f.png" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/f.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div> -->
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-wrap">
@@ -493,46 +459,6 @@ setInterval(changeBackground, 5000); // Change image every 5 seconds
               </div>
             </div>
           </div>
-
-          <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/2.png" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/2.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div> -->
-
-          <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div> -->
-
-          <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div> -->
-
-          <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div> -->
 
         </div>
 
