@@ -119,12 +119,85 @@
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="hero-slider">
+      <!-- Background images will be dynamically added here -->
+    </div>
     <div class="hero-container" data-aos="fade-in">
       <h1 class="text-white">Paulo Castro</h1>
       <p class="text-white">I'm <span class="text-white typed" data-typed-items="Web Developer, Software Engineer, Programmer, IT Student"></span></p>
-
     </div>
-  </section><!-- End Hero -->
+  </section>
+  <!-- <script>
+    // List of background images
+    const images = [
+  'assets/img/ZOFGK.jpg',
+  'assets/img/1st.jpg',
+  'assets/img/2nd.jpg',
+  'assets/img/3rd.jpg',
+  'assets/img/4th.jpg',
+  'assets/img/5th.jpg',
+  'assets/img/withj.jpg'
+];
+
+let index = 0;
+const slider = document.querySelector('.hero-slider');
+
+function changeBackground() {
+  slider.style.opacity = 0; // Fade out
+  setTimeout(() => {
+    slider.style.backgroundImage = `url(${images[index]})`;
+    index = (index + 1) % images.length;
+    slider.style.opacity = 1; // Fade in
+  }, 1000); // Wait for 1 second before fading in
+}
+
+// Initial call to change background and set interval for automatic change
+changeBackground();
+setInterval(changeBackground, 5000); // Change image every 5 seconds
+
+
+  </script> -->
+  <script>
+    const images = [
+  'assets/img/ZOFGK.jpg',
+  'assets/img/1st.jpg',
+  'assets/img/2nd.jpg',
+  'assets/img/3rd.jpg',
+  'assets/img/4th.jpg',
+  'assets/img/5th.jpg',
+  'assets/img/withj.jpg'
+];
+
+let index = 0;
+const slider = document.querySelector('.hero-slider');
+
+function changeBackground() {
+  if (index < images.length - 1) {
+    // Regular fade effect for all images except the last one
+    slider.style.opacity = 0; // Fade out
+    setTimeout(() => {
+      slider.style.backgroundImage = `url(${images[index]})`;
+      slider.style.opacity = 1; // Fade in
+      index = (index + 1) % images.length;
+    }, 1000); // Wait for 1 second before fading in
+  } else {
+    // Special "pasabog" effect for the last image
+    slider.style.animation = 'pasabog 2s ease'; // Apply the pasabog animation
+    setTimeout(() => {
+      slider.style.backgroundImage = `url(${images[index]})`;
+      slider.style.opacity = 1; // Reset opacity after animation
+      index = (index + 1) % images.length;
+      slider.style.animation = ''; // Clear animation to reset for next image change
+    }, 2000); // Wait for 2 seconds (same as animation duration) before changing image
+  }
+}
+
+// Initial call to change background and set interval for automatic change
+changeBackground();
+setInterval(changeBackground, 5000); // Change image every 5 seconds
+
+  </script>
+  <!-- End Hero -->
 
   <main id="main">
 
