@@ -231,9 +231,13 @@
 import { useEffect, useState } from 'react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
-import { Mail, Phone, MapPin, GitBranch, ExternalLink, Share2, Database, Globe, Smartphone, Code2 } from 'lucide-react';
-import { SiExpress, SiFlutter, SiNextdotjs, SiPostgresql, SiTailwindcss } from 'react-icons/si';
+import { Mail, Phone, MapPin, GitBranch, ExternalLink, Share2, Database, Globe, Smartphone, Code2, MessageCircle, X } from 'lucide-react';
+import { SiExpress, SiFlutter, SiMysql, SiNextdotjs, SiPostgresql, SiTailwindcss } from 'react-icons/si';
 import { FaBootstrap, FaCss3Alt, FaHtml5, FaJs, FaNodeJs, FaPhp, FaPython, FaReact } from 'react-icons/fa6';
+import MessageWindow from './components/chatWindow';
+import ChatInput from './components/chatInput';
+import { ChatHistory, Message } from './types';
+import { BsRobot } from 'react-icons/bs';
 
 const portfolioData = {
   hero: {
@@ -271,6 +275,8 @@ const portfolioData = {
   { name: 'Tailwind', icon: SiTailwindcss, color: '#38BDF8', isTailwind: true },
   { name: 'Node.js', icon: FaNodeJs, color: '#3C873A' },
   { name: 'Express', icon: SiExpress, color: '#444444' },
+    { name: 'MySQL', icon: SiMysql, color: '#444444' },
+
 ],
   projects: [
     { name: 'Skylar Versatile', type: 'Web', description: 'Tech: HTML, Bootstrap, CSS, PHP, MySQL', link: 'https://skylarversatile.000webhostapp.com/', img: '/assets/img/portfolio/project.png' },
@@ -292,7 +298,9 @@ const portfolioData = {
 
 export default function Home() {
   const [bgIndex, setBgIndex] = useState(0);
-
+  const [history, setHistory] = useState<ChatHistory>([]);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
   // Hero Background Slider Logic
   useEffect(() => {
     const timer = setInterval(() => {
@@ -300,8 +308,186 @@ export default function Home() {
     }, 5000);
     return () => clearInterval(timer);
   }, []);
+  const handleSend = async (message: string) => {
+  const newUserMessage: Message = {
+    role: "user",
+    parts: [{ text: message }],
+  };
+  const updatedHistory = [...history, newUserMessage];
+  setHistory(updatedHistory);
+  setIsTyping(true);
 
+  try {
+   const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userMessage: message,
+        history: updatedHistory,
+        settings: {} // DAGDAGAN ITO: Kahit empty object lang para hindi mag-undefined
+      }),
+    });
+
+    // CHECK IF RESPONSE IS OK
+    if (!response.ok) {
+      const errorText = await response.text(); // Kunin ang HTML error message
+      console.error("Server Error Raw Response:", errorText);
+      throw new Error(`Server returned ${response.status}: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    
+    if (data.error) {
+      console.error("AI Error:", data.error);
+      setIsTyping(false);
+      return;
+    }
+
+    const aiMessage: Message = {
+      role: "model",
+      parts: [{ text: data.response }],
+    };
+    setHistory([...updatedHistory, aiMessage]);
+  } catch (error) {
+    console.error("Request Failed:", error);
+    // Magpakita ng friendly message sa UI
+  } finally {
+    setIsTyping(false);
+  }
+};
+//  const handleSend = async (message: string) => {
+//     const newUserMessage: Message = {
+//       role: "user",
+//       parts: [{ text: message }],
+//     };
+//     const updatedHistory = [...history, newUserMessage];
+//     setHistory(updatedHistory);
+
+//     setIsTyping(true); // start typing
+
+//     try {
+//       const response = await fetch("/api/chat", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({
+//           userMessage: message,
+//           history: updatedHistory,
+         
+//         }),
+//       });
+
+//       const data = await response.json();
+//       if (data.error) {
+//         console.error("AI Error:", data.error);
+//         setIsTyping(false);
+//         return;
+//       }
+
+//       const aiMessage: Message = {
+//         role: "model",
+//         parts: [{ text: data.response }],
+//       };
+//       setHistory([...updatedHistory, aiMessage]);
+//     } catch (error) {
+//       console.error("Request Failed:", error);
+//     } finally {
+//       setIsTyping(false);
+//     }
+//   };
   return (
+    <>
+     {/* {!isChatOpen && (
+        <div
+          className="fixed right-4 top-1/2 transform -translate-y-1/2 cursor-pointer z-50"
+          onClick={() => setIsChatOpen(true)}
+        >
+          <div className="flex items-center justify-center w-16 h-16 rounded-full bg-blue-600 shadow-lg hover:bg-blue-700 transition-colors">
+            <MessageCircle size={28} className="text-white" />
+          </div>
+          <div className="absolute right-20 top-1/2 transform -translate-y-1/2 text-gray-700 font-semibold text-sm">
+            <p className="text-black dark:text-white">Assist to our chatbot!</p>
+          </div>
+        </div>
+      )}
+      {isChatOpen && (
+        <div className="fixed inset-0 z-50 flex flex-col bg-white">
+          <div className="flex justify-between items-center p-4 border-b shadow-sm">
+            <h2 className="text-lg font-semibold">Smartarksys Assistant</h2>
+            <button
+              className="text-gray-500 hover:text-gray-700 hover:cursor-pointer"
+              onClick={() => setIsChatOpen(false)}
+            >
+              ✕
+            </button>
+          </div>
+
+          <div className="flex-1 overflow-y-auto p-3">
+            <MessageWindow history={history} />
+
+            {isTyping && (
+              <div className="flex items-center space-x-2 mt-2">
+                <div className="w-3 h-3 bg-gray-400 rounded-full animate-bounce"></div>
+                <div className="w-3 h-3 bg-gray-400 rounded-full animate-bounce delay-150"></div>
+                <div className="w-3 h-3 bg-gray-400 rounded-full animate-bounce delay-300"></div>
+                <span className="text-gray-500 text-sm">
+                  Smartarksys is typing...
+                </span>
+              </div>
+            )}
+          </div>
+
+          
+          <ChatInput
+            onSend={handleSend}
+          />
+        </div>
+      )} */}
+      {/* Chatbot Floating Window */}
+{isChatOpen && (
+  <div className="fixed bottom-24 right-4 z-50 flex flex-col w-[350px] md:w-[400px] h-[500px] bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-slate-700 overflow-hidden transition-all animate-in fade-in slide-in-from-bottom-4">
+    {/* Header */}
+    <div className="flex justify-between items-center p-4 bg-blue-600 text-white shadow-sm">
+      <div className="flex items-center gap-2">
+        <BsRobot size={20} />
+        <h2 className="text-sm font-semibold">Assistant BOT</h2>
+      </div>
+      <button
+        className="p-1 hover:bg-blue-700 rounded-full transition-colors cursor-pointer"
+        onClick={() => setIsChatOpen(false)}
+      >
+        <X size={18} />
+      </button>
+    </div>
+
+    {/* Messages Area */}
+    <div className="flex-1 overflow-y-auto bg-gray-50 dark:bg-slate-900">
+      <MessageWindow history={history} isTyping={isTyping} />
+    </div>
+
+    {/* Input Area */}
+    <div className="p-2 bg-white dark:bg-slate-800 border-t border-gray-200 dark:border-slate-700">
+      <ChatInput onSend={handleSend} />
+    </div>
+  </div>
+)}
+
+{/* Floating Toggle Button */}
+{!isChatOpen && (
+  <div
+    className="fixed right-6 bottom-6 flex items-center gap-3 cursor-pointer z-50 group"
+    onClick={() => setIsChatOpen(true)}
+  >
+    <div className="bg-white dark:bg-slate-800 px-4 py-2 rounded-full shadow-lg border border-gray-100 dark:border-slate-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <p className="text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
+        Assist to our chatbot!
+      </p>
+    </div>
+    <div className="flex items-center justify-center w-14 h-14 rounded-full bg-blue-600 shadow-xl hover:bg-blue-700 hover:scale-110 transition-all duration-300">
+      <MessageCircle size={28} className="text-white" />
+    </div>
+  </div>
+)}
+    
     <div className="bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-50 transition-colors">
       <div className="fixed left-0 top-0 h-screen w-64 z-50">
         <Sidebar />
@@ -431,7 +617,7 @@ export default function Home() {
                     <h4 className="text-xl font-bold">{proj.name}</h4>
                     <p className="text-sm text-center mb-4">{proj.description}</p>
                     <div className="flex gap-4">
-                      <a href={proj.link} className="p-2 bg-white/20 rounded-full hover:bg-white/40"><ExternalLink size={20} /></a>
+                      <a href={proj.link} target='_blank' className="p-2 bg-white/20 rounded-full hover:bg-white/40"><ExternalLink size={20} /></a>
                     </div>
                   </div>
                 </div>
@@ -482,5 +668,6 @@ export default function Home() {
         <div className="h-[50vh] bg-transparent pointer-events-none" />
       </div>
     </div>
+    </>
   );
 }
