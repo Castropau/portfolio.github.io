@@ -715,7 +715,7 @@ const portfolioData = {
   },
   {
     name: 'POS System',
-    type: 'App',
+    type: 'Web',
     description: 'Point of Sale system for small businesses',
     link: '#',
     img: '/assets/img/portfolio/POS.png'
