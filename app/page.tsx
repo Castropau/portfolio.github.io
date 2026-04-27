@@ -663,14 +663,85 @@ const portfolioData = {
     { name: 'Node.js', icon: FaNodeJs, color: '#3C873A' },
     { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
   ],
+  // projects: [
+  //   { name: 'Skylar Versatile', type: 'Web', description: 'Tech: HTML, Bootstrap, CSS, PHP, MySQL', link: 'https://skylarversatile.000webhostapp.com/', img: '/assets/img/portfolio/project.png' },
+  //   { name: 'Activities App', type: 'Web', description: 'Next.js with Supabase integration', link: 'https://activities-inky.vercel.app/', img: '/assets/img/portfolio/activities124.png' },
+  //   { name: 'ERP System', type: 'Web', description: 'ERP System for Engineer using Next.js (TypeScript)', link: '#', img: '/assets/img/portfolio/erp2.png' },
+   
+  //   { name: 'Allies Arena', type: 'App', description: 'Social app built with Flutter, PHP, MySQL', link: '#', img: '/assets/img/portfolio/allies_arena.jpg' },
+  //     { name: 'Cash Registry', type: 'Web', description: 'Social app built with Flutter, PHP, MySQL', link: '#', img: '/assets/img/portfolio/cash.png' },
+  //   { name: 'POS', type: 'App', description: 'Social app built with Flutter, PHP, MySQL', link: '#', img: '/assets/img/portfolio/POS.png' },
+  //   { name: 'Activities App', type: 'Web', description: 'Next.js with Supabase integration', link: 'https://activities-inky.vercel.app/', img: '/assets/img/portfolio/activities124.png' },
+  //   { name: 'Customer Service', type: 'Web', description: 'Social app built with Flutter, PHP, MySQL', link: '#', img: '/assets/img/portfolio/service.png' },
+  //   { name: 'TS Lines', type: 'Web', description: 'Social app built with Flutter, PHP, MySQL', link: '#', img: '/assets/img/portfolio/tsl.png' },
+  //   { name: 'CRO', type: 'Web', description: 'Social app built with Flutter, PHP, MySQL', link: '#', img: '/assets/img/portfolio/cro.png' },
+
+  // ],
   projects: [
-    { name: 'ERP System', type: 'Web', description: 'Enterprise Resource Planning for Engineers using Next.js & TypeScript', link: '#', img: '/assets/img/portfolio/erp2.png' },
-    { name: 'Activities App', type: 'Web', description: 'Next.js with Supabase integration for task tracking', link: 'https://activities-inky.vercel.app/', img: '/assets/img/portfolio/activities124.png' },
-    { name: 'Skylar Versatile', type: 'Web', description: 'Business platform built with HTML, Bootstrap, & PHP', link: 'https://skylarversatile.000webhostapp.com/', img: '/assets/img/portfolio/project.png' },
-    { name: 'Allies Arena', type: 'App', description: 'Social application built with Flutter, PHP, & MySQL', link: '#', img: '/assets/img/portfolio/allies_arena.jpg' },
-    { name: 'Cash Registry', type: 'Web', description: 'Financial management system for retail environments', link: '#', img: '/assets/img/portfolio/cash.png' },
-    { name: 'POS System', type: 'Web', description: ' Point of Sale solution for small businesses', link: '#', img: '/assets/img/portfolio/POS.png' },
-  ],
+  {
+    name: 'Skylar Versatile',
+    type: 'Web',
+    description: 'Tech: HTML, Bootstrap, CSS, PHP, MySQL',
+    link: 'https://skylarversatile.000webhostapp.com/',
+    img: '/assets/img/portfolio/project.png'
+  },
+  {
+    name: 'Activities App',
+    type: 'Web',
+    description: 'Next.js with Supabase integration',
+    link: 'https://activities-inky.vercel.app/',
+    img: '/assets/img/portfolio/activities124.png'
+  },
+  {
+    name: 'ERP System',
+    type: 'Web',
+    description: 'ERP system for engineering workflow using Next.js (TypeScript)',
+    link: '#',
+    img: '/assets/img/portfolio/erp2.png'
+  },
+  {
+    name: 'Allies Arena',
+    type: 'App',
+    description: 'Social networking app built with Flutter, PHP, and MySQL',
+    link: '#',
+    img: '/assets/img/portfolio/allies_arena.jpg'
+  },
+  {
+    name: 'Cash Registry',
+    type: 'Web',
+    description: 'Cash management and registry system',
+    link: '#',
+    img: '/assets/img/portfolio/cash.png'
+  },
+  {
+    name: 'POS System',
+    type: 'App',
+    description: 'Point of Sale system for small businesses',
+    link: '#',
+    img: '/assets/img/portfolio/POS.png'
+  },
+  {
+    name: 'Customer Service Portal',
+    type: 'Web',
+    description: 'Customer support',
+    link: '#',
+    img: '/assets/img/portfolio/service.png'
+  },
+  {
+    name: 'TS Lines',
+    type: 'Web',
+    description: 'TS Lines landing page for transportation services',
+    link: '#',
+    img: '/assets/img/portfolio/tsl.png'
+  },
+  {
+    name: 'CRO',
+    type: 'Web',
+    description: 'CRO introduction landing page',
+    link: '#',
+    img: '/assets/img/portfolio/cro.png'
+  }
+],
   resume: {
     education: [
       { school: 'Quezon City University', date: '2020 - 2024', desc: 'Bachelor of Science in Information Technology' },
