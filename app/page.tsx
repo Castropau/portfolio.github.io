@@ -970,7 +970,7 @@ const [filter, setFilter] = useState('All');
                    <Mail size={20} /> Email Me
                  </a>
                  <div className="flex items-center justify-center gap-3 bg-blue-700 py-4 rounded-xl font-bold">
-                   <Phone size={20} /> 09810851408
+                   <Phone size={20} /> 09929122908
                  </div>
                </div>
                <div className="flex justify-center gap-8 mt-12">
