@@ -617,7 +617,8 @@ import Header from './components/Header';
 import { 
   Mail, Phone, MapPin, GitBranch, ExternalLink, Share2, 
   Database, Globe, Smartphone, Code2, MessageCircle, X, 
-  Eye, GraduationCap, Briefcase, Award, ChevronDown 
+  Eye, GraduationCap, Briefcase, Award, ChevronDown, 
+  FileText
 } from 'lucide-react';
 import { SiExpress, SiFlutter, SiMysql, SiNextdotjs, SiPostgresql, SiTailwindcss } from 'react-icons/si';
 import { FaBootstrap, FaCss3Alt, FaHtml5, FaJs, FaNodeJs, FaPhp, FaPython, FaReact } from 'react-icons/fa6';
@@ -750,7 +751,9 @@ const portfolioData = {
     experience: [
       { company: 'Alcon', role: 'Front-end Developer', date: '2025', tasks: ['Build ERP System using Next.js', 'Build TS Lines landing page', 'Build CRO landing page'] },
       { company: 'Meta Core Systems Inc.', role: 'Intern (OJT)', date: '2023 - 2024', tasks: ['Full-stack development training', 'PostgreSQL database management', 'Flutter UI Development'] },
-    ]
+    ],
+     downloadUrl: '/assets/data/Paulo Castro v4.pdf', 
+  previewImg: '/assets/data/Paulo Castro v4.pdf', 
   },
    certificates: [
     { name: 'Web Development', img: '/assets/img/portfolio/Web Development_certificate.jpg' },
@@ -804,7 +807,7 @@ const [filter, setFilter] = useState('All');
     <div className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 transition-colors selection:bg-blue-500 selection:text-white">
       
       {/* --- Lightbox Modal --- */}
-      {selectedImg && (
+      {/* {selectedImg && (
         <div 
           className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 backdrop-blur-sm transition-all"
           onClick={() => setSelectedImg(null)}
@@ -818,7 +821,71 @@ const [filter, setFilter] = useState('All');
             alt="Preview" 
           />
         </div>
+      )} */}
+      {/* --- Enhanced Lightbox Modal (Handles Images & PDFs) --- */}
+{/* {selectedImg && (
+  <div 
+    className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 md:p-10 backdrop-blur-md transition-all"
+    onClick={() => setSelectedImg(null)}
+  >
+    <button className="absolute top-6 right-6 z-[110] text-white hover:rotate-90 transition-transform bg-white/10 p-2 rounded-full">
+      <X size={32} />
+    </button>
+    
+    <div 
+      className="w-full max-w-5xl h-full flex items-center justify-center animate-in zoom-in-95 duration-300"
+      onClick={(e) => e.stopPropagation()} // Prevents closing when clicking inside the content
+    >
+      {selectedImg.toLowerCase().endsWith('.pdf') ? (
+        <iframe 
+          src={`${selectedImg}#toolbar=0`} // #toolbar=0 hides the PDF browser controls for a cleaner look
+          className="w-full h-full rounded-xl shadow-2xl border border-white/10"
+          title="Resume Preview"
+        />
+      ) : (
+        <img 
+          src={selectedImg} 
+          className="max-w-full max-h-full rounded-lg shadow-2xl object-contain" 
+          alt="Preview" 
+        />
       )}
+    </div>
+  </div>
+)} */}
+{/* --- Enhanced Lightbox Modal (Handles Images & Actual PDFs) --- */}
+{selectedImg && (
+  <div 
+    className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 md:p-12 backdrop-blur-md transition-all"
+    onClick={() => setSelectedImg(null)}
+  >
+    {/* Close Button */}
+    <button className="absolute top-6 right-6 z-[110] text-white hover:rotate-90 transition-transform bg-white/10 p-2 rounded-full">
+      <X size={32} />
+    </button>
+    
+    <div 
+      className="w-full max-w-5xl h-full flex items-center justify-center animate-in zoom-in-95 duration-300"
+      onClick={(e) => e.stopPropagation()} // Prevents closing modal when clicking inside the PDF/Image
+    >
+      {selectedImg.toLowerCase().endsWith('.pdf') ? (
+        /* PDF VIEWING LOGIC */
+        <iframe 
+          src={`${selectedImg}#view=FitH`} 
+          className="w-full h-full rounded-xl shadow-2xl bg-white"
+          title="PDF Preview"
+          style={{ border: 'none' }}
+        />
+      ) : (
+        /* IMAGE VIEWING LOGIC */
+        <img 
+          src={selectedImg} 
+          className="max-w-full max-h-full rounded-lg shadow-2xl object-contain" 
+          alt="Preview" 
+        />
+      )}
+    </div>
+  </div>
+)}
 
       {/* --- Sidebar & Layout --- */}
       <div className="fixed left-0 top-0 h-screen w-64 z-40 hidden lg:block">
@@ -900,8 +967,9 @@ const [filter, setFilter] = useState('All');
         </section>
 
         {/* --- Resume Section --- */}
-        <section id="resume" className="py-24 px-6 md:px-12 max-w-6xl mx-auto">
+        {/* <section id="resume" className="py-24 px-6 md:px-12 max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-16 text-center">Resume</h2>
+          
           <div className="grid lg:grid-cols-2 gap-16">
             <div>
               <div className="flex items-center gap-3 mb-8">
@@ -939,8 +1007,77 @@ const [filter, setFilter] = useState('All');
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
+{/* --- Resume Section --- */}
+<section id="resume" className="py-24 px-6 md:px-12 max-w-6xl mx-auto">
+  <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
+    <div className="text-center md:text-left">
+      <h2 className="text-4xl font-bold mb-2">Resume</h2>
+      <div className="h-1.5 w-20 bg-blue-600 mx-auto md:mx-0" />
+    </div>
 
+    {/* Resume Actions */}
+    <div className="flex flex-wrap justify-center gap-4">
+      <button 
+        onClick={() => setSelectedImg(portfolioData.resume.previewImg)}
+        className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm"
+      >
+        <Eye size={18} className="text-blue-600" />
+        Preview CV
+      </button>
+      
+      <a 
+        href={portfolioData.resume.downloadUrl} 
+        download
+        className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl font-bold text-sm hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20"
+      >
+        <FileText size={18} />
+        Download CV
+      </a>
+    </div>
+  </div>
+
+  <div className="grid lg:grid-cols-2 gap-16">
+    {/* ... Your existing Education mapping ... */}
+    <div>
+      <div className="flex items-center gap-3 mb-8">
+        <GraduationCap className="text-blue-600" size={32} />
+        <h3 className="text-2xl font-bold">Education</h3>
+      </div>
+      {portfolioData.resume.education.map((edu, idx) => (
+        <div key={idx} className="relative pl-8 pb-10 border-l-2 border-slate-200 dark:border-slate-700 last:pb-0">
+          <div className="absolute w-4 h-4 bg-blue-600 rounded-full -left-[9px] top-1 outline outline-4 outline-white dark:outline-slate-900" />
+          <h4 className="font-bold text-xl">{edu.school}</h4>
+          <div className="inline-block my-2 px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-bold rounded">{edu.date}</div>
+          <p className="text-slate-600 dark:text-slate-400 italic">{edu.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* ... Your existing Experience mapping ... */}
+    <div>
+      <div className="flex items-center gap-3 mb-8">
+        <Briefcase className="text-blue-600" size={32} />
+        <h3 className="text-2xl font-bold">Experience</h3>
+      </div>
+      {portfolioData.resume.experience.map((exp, idx) => (
+        <div key={idx} className="relative pl-8 pb-10 border-l-2 border-slate-200 dark:border-slate-700 last:pb-0">
+          <div className="absolute w-4 h-4 bg-blue-600 rounded-full -left-[9px] top-1 outline outline-4 outline-white dark:outline-slate-900" />
+          <h4 className="font-bold text-xl">{exp.role}</h4>
+          <div className="inline-block my-2 px-3 py-1 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-sm font-bold rounded">{exp.date}</div>
+          <p className="font-bold text-slate-700 dark:text-slate-300 mb-3">{exp.company}</p>
+          <ul className="space-y-2">
+            {exp.tasks.map((task, i) => (
+              <li key={i} className="text-sm text-slate-600 dark:text-slate-400 flex gap-2 font-medium">
+                <span className="text-blue-600">•</span> {task}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
         {/* --- Projects Section --- */}
      {/* --- Projects Section --- */}
 <section id="projects" className="py-24 px-6 md:px-12 bg-slate-900 text-white">
