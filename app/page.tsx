@@ -732,15 +732,22 @@ const portfolioData = {
     name: 'TS Lines',
     type: 'Web',
     description: 'TS Lines landing page for transportation services',
-    link: '#',
+    link: 'https://tsline-one.vercel.app/',
     img: '/assets/img/portfolio/tsl.png'
   },
   {
     name: 'CRO',
     type: 'Web',
     description: 'CRO introduction landing page',
-    link: '#',
+    link: 'https://cro-omega.vercel.app/',
     img: '/assets/img/portfolio/cro.png'
+  },
+  {
+    name: 'GrowUp',
+    type: 'Web',
+    description: 'GrowUp is a social media platform built with Next.js, tailwind css, webSocket and MySQL that allows users to connect, share content, and engage with a vibrant online community.',
+    link: 'https://growup-9psm.onrender.com/',
+    img: '/assets/img/portfolio/growup.png'
   }
 ],
   resume: {
@@ -752,8 +759,8 @@ const portfolioData = {
       { company: 'Alcon', role: 'Front-end Developer', date: '2025', tasks: ['Build ERP System using Next.js', 'Build TS Lines landing page', 'Build CRO landing page'] },
       { company: 'Meta Core Systems Inc.', role: 'Intern (OJT)', date: '2023 - 2024', tasks: ['Full-stack development training', 'PostgreSQL database management', 'Flutter UI Development'] },
     ],
-     downloadUrl: '/assets/data/Paulo Castro v4.pdf', 
-  previewImg: '/assets/data/Paulo Castro v4.pdf', 
+     downloadUrl: '/assets/data/Paulo Castrov5.pdf', 
+  previewImg: '/assets/data/Paulo Castrov5.pdf', 
   },
    certificates: [
     { name: 'Web Development', img: '/assets/img/portfolio/Web Development_certificate.jpg' },
